@@ -1,0 +1,122 @@
+Problem 1: given a number, print its binary representation. [easy]
+Input 1: number = 5
+Output 1: 101
+Input 2: number = 10
+Output 2: 1010
+ANS:-public class DecimalToBinary {
+    public static void main(String[] args) {
+        int number1 = 5;
+        System.out.println("Output 1: " + decimalToBinary(number1));
+
+        int number2 = 10;
+        System.out.println("Output 2: " + decimalToBinary(number2));
+    }
+
+    public static String decimalToBinary(int number) {
+        if (number == 0) {
+            return "0";
+        }
+
+        StringBuilder binary = new StringBuilder();
+        while (number > 0) {
+            // Get the remainder when dividing by 2
+            int remainder = number % 2;
+            // Prepend the remainder to the binary string
+            binary.insert(0, remainder);
+            // Divide the number by 2
+            number /= 2;
+        }
+
+        return binary.toString();
+    }
+}
+
+Problem 2: given a number ‘n’, predict whether it is a power of two or not. [medium]
+Input 1: n = 15
+Output 1: False
+Input 2: n = 32
+Output 2: True
+ANS:-public class PowerOfTwo {
+    public static void main(String[] args) {
+        int n1 = 15;
+        System.out.println("Output 1: " + isPowerOfTwo(n1));
+
+        int n2 = 32;
+        System.out.println("Output 2: " + isPowerOfTwo(n2));
+    }
+
+    public static boolean isPowerOfTwo(int n) {
+        // If n is less than or equal to 0, it cannot be a power of two
+        if (n <= 0) {
+            return false;
+        }
+
+        // Check if only one bit is set in n's binary representation
+        return (n & (n - 1)) == 0;
+    }
+}
+
+Q3. Problem 1: Given a number. Using bit manipulation, check whether it is odd or even.
+Input 8, Even
+3, False
+ANS:-public class OddEven {
+    public static void main(String[] args) {
+        int num1 = 8;
+        System.out.println("Input " + num1 + ": " + (isEven(num1) ? "Even" : "Odd"));
+
+        int num2 = 3;
+        System.out.println("Input " + num2 + ": " + (isEven(num2) ? "Even" : "Odd"));
+    }
+
+    public static boolean isEven(int num) {
+        // Using bitwise AND operation with 1 to check the LSB
+        // If the LSB is 0, the number is even; otherwise, it is odd
+        return (num & 1) == 0;
+    }
+}
+
+Q4. Given a number, count the number of set bits in that number without using an extra space.
+Note : bit ‘1’ is also known as set bit.
+ANS:-public class CountSetBits {
+    public static void main(String[] args) {
+        int num1 = 5;
+        System.out.println("Input " + num1 + ": " + countSetBits(num1));
+
+        int num2 = 10;
+        System.out.println("Input " + num2 + ": " + countSetBits(num2));
+    }
+
+    public static int countSetBits(int num) {
+        int count = 0;
+        while (num > 0) {
+            // Flip the least significant set bit to 0
+            num &= (num - 1);
+            // Increment the count
+            count++;
+        }
+        return count;
+    }
+}
+
+Q5. Given an integer array, duplicates are present in it in a way that all duplicates appear an even
+number of times except one which appears an odd number of times. Find that odd appearing
+element in linear time and without using any extra memory.
+For example,
+Input : arr[] = [4, 3, 6, 2, 6, 4, 2, 3, 4, 3, 3]
+Output : The odd occurring element is 4.
+ANS:-public class OddOccurrence {
+    public static void main(String[] args) {
+        int[] arr = {4, 3, 6, 2, 6, 4, 2, 3, 4, 3, 3};
+        int oddOccurrence = findOddOccurrence(arr);
+        System.out.println("The odd occurring element is " + oddOccurrence + ".");
+    }
+
+    public static int findOddOccurrence(int[] arr) {
+        int result = 0;
+        for (int num : arr) {
+            // XOR operation to find the odd occurring element
+            result ^= num;
+        }
+        return result;
+    }
+}
